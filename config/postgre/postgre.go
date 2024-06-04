@@ -23,11 +23,12 @@ func Connect() *sqlx.DB {
 	db, err := sqlx.Connect("pgx", connStr)
 	if err != nil {
 		log.Fatalf("Failed to connect to the database: %v", err)
+		db.Close()
 	}
-	defer db.Close()
 
 	if err := goose.Up(db.DB, "./migrations"); err != nil {
 		log.Fatalf("Goose migration failed : %v", err)
+		db.Close()
 	}
 
 	return db
