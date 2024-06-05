@@ -9,5 +9,5 @@ import (
 
 type UsersInterface interface {
 	Create(ctx context.Context, user *entity.Users) (*entity.Users, *echo.HTTPError)
-	GetById(ctx context.Context, id int64) (*entity.Users, *echo.HTTPError)
+	GetByParam(ctx context.Context, param string, value interface{}) (*entity.Users, *echo.HTTPError)
 }

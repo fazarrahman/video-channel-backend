@@ -33,14 +33,14 @@ func (p *Postgre) Create(ctx context.Context, user *entity.Users) (*entity.Users
 	return user, nil
 }
 
-func (p *Postgre) GetById(ctx context.Context, id int64) (*entity.Users, *echo.HTTPError) {
+func (p *Postgre) GetByParam(ctx context.Context, param string, value interface{}) (*entity.Users, *echo.HTTPError) {
 	var user entity.Users
-	err := p.Db.GetContext(ctx, &user, "SELECT id, username, password_hash, email FROM users where id = ?", id)
+	err := p.Db.GetContext(ctx, &user, "SELECT id, username, password_hash, email FROM users where "+param+" = $1", value)
 	if err == sql.ErrNoRows {
 		return nil, nil
 	} else if err != nil {
 		return nil, echo.NewHTTPError(http.StatusInternalServerError,
-			"Error when getting users data : "+err.Error())
+			"Error when getting user data : "+err.Error())
 	}
 	return &user, nil
 }

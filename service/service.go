@@ -3,6 +3,7 @@ package service
 import (
 	"github.com/fazarrahman/video-channel-backend/domain/users/entity"
 	usersRepository "github.com/fazarrahman/video-channel-backend/domain/users/repository"
+	"github.com/fazarrahman/video-channel-backend/model"
 	"github.com/labstack/echo/v4"
 )
 
@@ -16,4 +17,5 @@ func New(userRepo usersRepository.UsersInterface) *Service {
 
 type ServiceInterface interface {
 	Create(ctx echo.Context, users entity.Users) (*entity.Users, *echo.HTTPError)
+	SignIn(ctx echo.Context, signinInput model.Signin) (*string, *echo.HTTPError)
 }
