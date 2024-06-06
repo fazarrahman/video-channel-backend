@@ -12,7 +12,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func (s *Service) Create(ctx echo.Context, users entity.Users) (*entity.Users, *echo.HTTPError) {
+func (s *Service) CreateUser(ctx echo.Context, users entity.Users) (*entity.Users, *echo.HTTPError) {
 	if strings.TrimSpace(users.Username) == "" {
 		return nil, echo.NewHTTPError(http.StatusBadRequest, "Username is required")
 	} else if strings.TrimSpace(users.Password) == "" {
