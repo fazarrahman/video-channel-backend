@@ -93,7 +93,7 @@ func (s *Service) CheckEmailAndPassword(ctx echo.Context, r model.Signin) (*enti
 
 	erro := bcrypt.CompareHashAndPassword(userEntity.PasswordHash, []byte(r.Password))
 	if erro != nil {
-		return nil, echo.NewHTTPError(http.StatusBadRequest, "Invalid password : "+erro.Error())
+		return nil, echo.NewHTTPError(http.StatusBadRequest, "Invalid username or password")
 	}
 	return userEntity, nil
 }
