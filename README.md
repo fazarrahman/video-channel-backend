@@ -6,7 +6,7 @@ Please follow the instructions from this link : https://docs.docker.com/engine/i
 # Run these command on the terminal
 sudo docker network create video
 sudo docker compose -f docker-compose.db.yml up -d
-sudo docker compose -f docker-compose.backend.yml up -d
+sudo docker compose -f docker-compose.backend.yml up --build -d
 
 Backend will run at localhost:4000 and postgre db at port 5432
 The postgresdb credentials :
